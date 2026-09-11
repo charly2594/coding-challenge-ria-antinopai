@@ -1,0 +1,11 @@
+{
+    "student": "Tim Allen",
+    "email_address": "tim@homeimprovement.com",
+    "phone": "(408) 8674530",
+    "current_grade": "B+",
+    "topping": [
+        "bacon",
+        "cheese",
+        "mushroom"
+        ]
+}

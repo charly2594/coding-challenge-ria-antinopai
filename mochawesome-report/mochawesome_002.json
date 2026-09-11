@@ -1,0 +1,122 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-09-11T01:00:24.147Z",
+    "end": "2026-09-11T01:00:47.045Z",
+    "duration": 22898,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "8d83ab94-989e-4620-b570-4d48da943ca2",
+      "title": "",
+      "fullFile": "C:\\Users\\Charly\\projects\\Selenium Projects\\coding-challenge-ria\\tests\\feedback.js",
+      "file": "\\tests\\feedback.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "dc8bb061-df00-47f4-b6ed-058356fe3629",
+          "title": "RIA transfer quote calculator",
+          "fullFile": "C:\\Users\\Charly\\projects\\Selenium Projects\\coding-challenge-ria\\tests\\feedback.js",
+          "file": "\\tests\\feedback.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "loads the homepage and clicks the They receive button",
+              "fullTitle": "RIA transfer quote calculator loads the homepage and clicks the They receive button",
+              "timedOut": false,
+              "duration": 9818,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "let driver;\ntry {\n    driver = await new Builder().forBrowser('firefox').build();\n    await driver.get('https://www.riamoneytransfer.com/');\n    await driver.manage().setTimeouts({ implicit: 1000 });\n    const title = await driver.getTitle();\n    assert.ok(title && title.length > 0, 'Page title should be available');\n    const button = await driver.wait(\n        until.elementLocated(\n            By.xpath(\"//*[contains(normalize-space(.), 'Transfer quote calculator')]//*[normalize-space()='They receive']/following::button[1]\")\n        ),\n        10000\n    );\n    await driver.wait(until.elementIsVisible(button), 10000);\n    assert.ok(button, 'They receive button should be visible');\n    await driver.sleep(2000);\n    await button.click();\n    console.log('Clicked the \"They receive\" button');\n    await driver.sleep(2000);\n    const calculator = await driver.wait(\n        until.elementLocated(\n            By.xpath(\"//*[contains(normalize-space(.), 'Transfer quote calculator')]\")\n        ),\n        10000\n    );\n    assert.ok(calculator, 'Transfer quote calculator should remain visible after click');\n} finally {\n    if (driver) {\n        await driver.quit();\n    }\n}",
+              "err": {},
+              "uuid": "cba178ae-051e-4db7-ba00-ec97f35a2f96",
+              "parentUUID": "dc8bb061-df00-47f4-b6ed-058356fe3629",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "does not accept alphabetical characters in the calculator input",
+              "fullTitle": "RIA transfer quote calculator does not accept alphabetical characters in the calculator input",
+              "timedOut": false,
+              "duration": 13076,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "let driver;\ntry {\n    driver = await new Builder().forBrowser('firefox').build();\n    await driver.get('https://www.riamoneytransfer.com/');\n    await driver.manage().setTimeouts({ implicit: 1000 });\n    const button = await driver.wait(\n        until.elementLocated(\n            By.xpath(\"//*[contains(normalize-space(.), 'Transfer quote calculator')]//*[normalize-space()='They receive']/following::button[1]\")\n        ),\n        10000\n    );\n    await driver.wait(until.elementIsVisible(button), 10000);\n    await driver.sleep(2000);\n    await button.click();\n    const amountInput = await driver.wait(\n        until.elementLocated(\n            By.xpath(\"//*[contains(normalize-space(.), 'Transfer quote calculator')]//input\")\n        ),\n        10000\n    );\n    await driver.wait(until.elementIsVisible(amountInput), 10000);\n    await amountInput.clear();\n    await amountInput.sendKeys('abc123');\n    const value = await amountInput.getAttribute('value');\n    assert.ok(!/[a-z]/i.test(value || ''), 'Alphabetical characters should not be written in the calculator input');\n} finally {\n    if (driver) {\n        await driver.quit();\n    }\n}",
+              "err": {},
+              "uuid": "2ac5eae3-7ac4-406a-84f9-4790e36dd89a",
+              "parentUUID": "dc8bb061-df00-47f4-b6ed-058356fe3629",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "cba178ae-051e-4db7-ba00-ec97f35a2f96",
+            "2ac5eae3-7ac4-406a-84f9-4790e36dd89a"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 22894,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 30000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "10.8.2"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "8.0.1"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "./mochawesome-report",
+        "overwrite": "false"
+      },
+      "version": "6.3.2"
+    }
+  }
+}

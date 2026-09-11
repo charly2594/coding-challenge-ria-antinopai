@@ -1,0 +1,103 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-09-11T00:46:52.255Z",
+    "end": "2026-09-11T00:47:01.564Z",
+    "duration": 9309,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "592b72d1-0488-4e6e-84b7-a9cf44fa1e5a",
+      "title": "",
+      "fullFile": "C:\\Users\\Charly\\projects\\Selenium Projects\\coding-challenge-ria\\tests\\feedback.js",
+      "file": "\\tests\\feedback.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "de6b0421-5d61-49bd-a5d8-d37e3639109a",
+          "title": "RIA transfer quote calculator",
+          "fullFile": "C:\\Users\\Charly\\projects\\Selenium Projects\\coding-challenge-ria\\tests\\feedback.js",
+          "file": "\\tests\\feedback.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "loads the homepage and clicks the They receive button",
+              "fullTitle": "RIA transfer quote calculator loads the homepage and clicks the They receive button",
+              "timedOut": false,
+              "duration": 9306,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "let driver;\ntry {\n    driver = await new Builder().forBrowser('firefox').build();\n    await driver.get('https://www.riamoneytransfer.com/');\n    await driver.manage().setTimeouts({ implicit: 1000 });\n    const title = await driver.getTitle();\n    assert.ok(title && title.length > 0, 'Page title should be available');\n    const button = await driver.wait(\n        until.elementLocated(\n            By.xpath(\"//*[contains(normalize-space(.), 'Transfer quote calculator')]//*[normalize-space()='They receive']/following::button[1]\")\n        ),\n        10000\n    );\n    await driver.wait(until.elementIsVisible(button), 10000);\n    assert.ok(button, 'They receive button should be visible');\n    await driver.sleep(2000);\n    await button.click();\n    console.log('Clicked the \"They receive\" button');\n    await driver.sleep(2000);\n    const calculator = await driver.wait(\n        until.elementLocated(\n            By.xpath(\"//*[contains(normalize-space(.), 'Transfer quote calculator')]\")\n        ),\n        10000\n    );\n    assert.ok(calculator, 'Transfer quote calculator should remain visible after click');\n} finally {\n    if (driver) {\n        await driver.quit();\n    }\n}",
+              "err": {},
+              "uuid": "28bff321-d7f7-42f3-b9e0-2fe362b3df88",
+              "parentUUID": "de6b0421-5d61-49bd-a5d8-d37e3639109a",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "28bff321-d7f7-42f3-b9e0-2fe362b3df88"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 9306,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 30000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "10.8.2"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "8.0.1"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "./mochawesome-report",
+        "overwrite": "false"
+      },
+      "version": "6.3.2"
+    }
+  }
+}
